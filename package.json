@@ -1,0 +1,24 @@
+{
+  "name": "aiworkers-ca",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build --local --skip-cloud-checks --skip-indexing && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "4.3.14",
+    "@astrojs/sitemap": "3.7.2",
+    "@astrojs/tailwind": "6.0.2",
+    "@tailwindcss/typography": "0.5.19",
+    "@tinacms/cli": "latest",
+    "astro": "5.18.1",
+    "autoprefixer": "10.4.22",
+    "tailwindcss": "3.4.17",
+    "tinacms": "latest"
+  },
+  "devDependencies": {}
+}

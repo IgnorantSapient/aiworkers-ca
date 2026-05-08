@@ -1,0 +1,41 @@
+---
+import '../styles.css';
+const { title = 'Hire AI Workers | aiworkers.ca', description = 'AI Workers helps Canadian businesses automate support, sales, operations, administration, recruiting, finance, and risk workflows with digital AI employees.', canonical = 'https://aiworkers.ca/' } = Astro.props;
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="aiworkers.ca" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050505" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'aiworkers.ca',
+      url: 'https://aiworkers.ca',
+      areaServed: 'CA',
+      description,
+      serviceType: 'AI automation, AI agents, digital workforce consulting',
+      sameAs: ['https://www.linkedin.com/company/aiworkers-ca']
+    })}></script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('in-view'));
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

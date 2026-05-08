@@ -1,0 +1,8 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+export async function getStaticPaths(){ return (await getCollection('services')).map((entry)=>({ params:{ slug: entry.slug }, props:{ entry } })); }
+const { entry } = Astro.props; const { Content } = await entry.render();
+---
+<BaseLayout title={`${entry.data.title} | aiworkers.ca`} description={entry.data.description} canonical={`https://aiworkers.ca/services/${entry.slug}/`}><Header /><main class="bg-black px-5 py-32 lg:px-8"><article class="prose prose-invert prose-zinc mx-auto max-w-3xl"><p class="not-prose mb-6 grid h-14 w-14 place-items-center rounded-2xl border border-white/15 text-2xl">{entry.data.icon}</p><h1>{entry.data.title}</h1><p class="lead text-zinc-400">{entry.data.description}</p><div class="not-prose my-8 rounded-3xl border border-white/10 bg-white/[.04] p-6 font-bold">Business outcome: {entry.data.outcome}</div><Content /></article></main></BaseLayout>
