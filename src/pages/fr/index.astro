@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import LandingPage from '../components/LandingPage.astro';
-import { locales } from '../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LandingPage from '../../components/LandingPage.astro';
+import { locales } from '../../i18n';
 
-const content = locales['en-CA'];
+const content = locales['fr-CA'];
 ---
 <BaseLayout
   title={content.title}
   description={content.description}
-  canonical="https://aiworkers.ca/"
+  canonical="https://aiworkers.ca/fr/"
   lang={content.code}
   alternateLocales={[
     { lang: 'fr-CA', href: 'https://aiworkers.ca/fr/' },

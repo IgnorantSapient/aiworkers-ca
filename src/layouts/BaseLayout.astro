@@ -5,38 +5,49 @@ const {
   description = 'AI Workers helps businesses hire AI workers that never get tired, never call in sick, never ask for a raise, and operate at a fraction of traditional hiring costs.',
   canonical = 'https://aiworkers.ca/',
   image = 'https://aiworkers.ca/og-image.png',
+  lang = 'en-CA',
+  alternateLocales = [
+    { lang: 'en-CA', href: 'https://aiworkers.ca/' },
+    { lang: 'fr-CA', href: 'https://aiworkers.ca/fr/' },
+    { lang: 'x-default', href: 'https://aiworkers.ca/' },
+  ],
+  ogImageAlt = 'Hire AI Workers - Digital employees for your modern business',
+  serviceType = 'AI automation, AI agents, digital workforce consulting',
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en-CA">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternateLocales.map(({ lang: localeLang, href }) => <link rel="alternate" hreflang={localeLang} href={href} />)}
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="aiworkers.ca" />
+    <meta property="og:locale" content={lang === 'fr-CA' ? 'fr_CA' : 'en_CA'} />
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="1200" />
-    <meta property="og:image:alt" content="Hire AI Workers - Digital employees for your modern business" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={image} />
-    <meta name="twitter:image:alt" content="Hire AI Workers - Digital employees for your modern business" />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     <meta name="theme-color" content="#050505" />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       name: 'aiworkers.ca',
-      url: 'https://aiworkers.ca',
+      url: canonical,
       areaServed: 'CA',
+      inLanguage: lang,
       description,
-      serviceType: 'AI automation, AI agents, digital workforce consulting',
+      serviceType,
       sameAs: ['https://www.linkedin.com/company/aiworkers-ca']
     })}></script>
   </head>

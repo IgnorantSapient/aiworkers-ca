@@ -1,12 +1,32 @@
+---
+import { locales, type LocaleContent } from '../i18n';
+
+interface Props {
+  content?: LocaleContent;
+}
+
+const { content = locales['en-CA'] } = Astro.props;
+const { nav } = content;
+---
 <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/55 backdrop-blur-2xl">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:px-8" aria-label="Primary navigation">
-    <a href="/" class="group flex min-w-0 items-center gap-3" aria-label="aiworkers.ca home">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:px-8" aria-label={nav.aria}>
+    <a href={content.path} class="group flex min-w-0 items-center gap-3" aria-label={nav.home}>
       <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/15 bg-white text-sm font-black text-black transition group-hover:scale-105">AI</span>
       <span class="hidden font-display text-lg font-extrabold tracking-tight min-[390px]:inline">aiworkers.ca</span>
     </a>
     <div class="hidden items-center gap-8 text-sm font-medium text-zinc-300 md:flex">
-      <a class="hover:text-white" href="#services">AI Workers</a><a class="hover:text-white" href="#process">Process</a><a class="hover:text-white" href="#roi">ROI</a><a class="hover:text-white" href="#industries">Industries</a><a class="hover:text-white" href="#about">About</a>
+      <a class="hover:text-white" href="#services">{nav.aiWorkers}</a><a class="hover:text-white" href="#process">{nav.process}</a><a class="hover:text-white" href="#roi">{nav.roi}</a><a class="hover:text-white" href="#industries">{nav.industries}</a><a class="hover:text-white" href="#about">{nav.about}</a>
     </div>
-    <a href="#consultation" class="button-shine shrink-0 whitespace-nowrap rounded-full border border-white/20 bg-white px-3.5 py-2.5 text-xs font-bold text-black shadow-soft transition hover:-translate-y-0.5 hover:bg-zinc-200 sm:px-5 sm:text-sm">Schedule Consultation</a>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a
+        href={content.alternatePath}
+        hreflang={content.code === 'en-CA' ? 'fr-CA' : 'en-CA'}
+        class="shrink-0 rounded-full border border-white/15 px-3 py-2 text-xs font-bold uppercase tracking-wide text-zinc-200 transition hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
+        aria-label={`${nav.switcherLabel}: ${content.alternateLabel}`}
+      >
+        {content.code === 'en-CA' ? 'FR' : 'EN'}
+      </a>
+      <a href="#consultation" class="button-shine shrink-0 whitespace-nowrap rounded-full border border-white/20 bg-white px-3.5 py-2.5 text-xs font-bold text-black shadow-soft transition hover:-translate-y-0.5 hover:bg-zinc-200 sm:px-5 sm:text-sm">{nav.consultation}</a>
+    </div>
   </nav>
 </header>
